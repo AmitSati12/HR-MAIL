@@ -3,9 +3,11 @@ from send_mail import send_email
 from db import insert_application
 import pandas as pd
 import time
+from flask_cors import CORS
 
+# app = Flask(__name__)
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route("/")
 def home():
