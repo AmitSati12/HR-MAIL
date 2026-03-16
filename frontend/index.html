@@ -41,7 +41,7 @@
 
 </div>
 
-<script>
+<!-- <script>
 
 document.getElementById("jobForm").onsubmit = async function(e){
 
@@ -78,6 +78,52 @@ let data = await response.json()
 document.getElementById("bulkResult").innerText = data.status
 
 }
+</script> -->
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const jobForm = document.getElementById("jobForm");
+    const bulkForm = document.getElementById("bulkForm");
+
+    jobForm.addEventListener("submit", async function(e){
+
+        e.preventDefault()
+
+        console.log("Single send triggered")
+
+        let formData = new FormData(this)
+
+        let response = await fetch("https://hr-mail.onrender.com/send",{
+            method:"POST",
+            body:formData
+        })
+
+        let data = await response.json()
+
+        document.getElementById("result").innerText = data.status
+    })
+
+    bulkForm.addEventListener("submit", async function(e){
+
+        e.preventDefault()
+
+        console.log("Bulk send triggered")
+
+        let formData = new FormData(this)
+
+        let response = await fetch("https://hr-mail.onrender.com/bulk_send",{
+            method:"POST",
+            body:formData
+        })
+
+        let data = await response.json()
+
+        document.getElementById("bulkResult").innerText = data.status
+    })
+
+})
+
 </script>
 
 </body>
