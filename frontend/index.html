@@ -49,7 +49,7 @@ e.preventDefault()
 
 let formData = new FormData(this)
 
-let response = await fetch("/send",
+let response = await fetch("https://your-render-app.onrender.com/send",
 {
 method:"POST",
 body:formData
@@ -69,7 +69,7 @@ e.preventDefault()
 
 let formData = new FormData(this)
 
-let response = await fetch("/bulk_send",{
+let response = await fetch("https://your-render-app.onrender.com/bulk_send",{
 method:"POST",
 body:formData
 })
