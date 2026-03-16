@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return "Backend API is running"
 @app.route("/")
 def health():
     return "Backend running successfully"
