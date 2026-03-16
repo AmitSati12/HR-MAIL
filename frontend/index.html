@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Job Application Sender</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Send Job Application</h2>
+
+<form id="jobForm">
+
+<input type="text" name="company" placeholder="Company Name" required>
+
+<input type="text" name="role" placeholder="Job Role" required>
+
+<input type="email" name="email" placeholder="HR Email" required>
+
+<textarea name="message" placeholder="Custom Message"></textarea>
+
+<button type="submit">Send Application</button>
+
+</form>
+<form id="bulkForm" enctype="multipart/form-data">
+
+<input type="file" name="file" accept=".xlsx" required>
+
+<textarea name="message" placeholder="Custom message"></textarea>
+
+<button type="submit">Send Bulk Applications</button>
+
+</form>
+
+<p id="bulkResult"></p>
+
+<p id="result"></p>
+
+</div>
+
+<script>
+
+document.getElementById("jobForm").onsubmit = async function(e){
+
+e.preventDefault()
+
+let formData = new FormData(this)
+
+let response = await fetch("/send",
+{
+method:"POST",
+body:formData
+})
+
+let data = await response.json()
+
+document.getElementById("result").innerText = data.status
+
+}
+
+</script>
+<script>
+document.getElementById("bulkForm").onsubmit = async function(e){
+
+e.preventDefault()
+
+let formData = new FormData(this)
+
+let response = await fetch("/bulk_send",{
+method:"POST",
+body:formData
+})
+
+let data = await response.json()
+
+document.getElementById("bulkResult").innerText = data.status
+
+}
+</script>
+
+</body>
+
+</html>
