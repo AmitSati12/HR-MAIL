@@ -1,2 +1,6 @@
+Flask
 pandas
 openpyxl
+pymongo
+flask-cors
+gunicorn
